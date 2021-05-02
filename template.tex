@@ -11,23 +11,32 @@
 \maketitle
 % 
 \begin{abstract}
-  For your paper to be published in the conference proceedings, you must use this document as both an instruction set and as a template into which you can type your own text. If your paper does not conform to the required format, you will be asked to fix it.
-
-  Please do not reuse your past papers as a template. To prepare your paper for submission, please always download a fresh copy of this template from the conference website and please read the format instructions in this template before you use it for your paper.
-
-  Conversion to PDF may cause problems in the resulting PDF or expose problems in your source document. Before submitting your final paper in PDF, check that the format in your paper PDF conforms to this template. Specifically, check the appearance of the title and author block, the appearance of section headings, document margins, column width, column spacing, and other features such as figure numbers, table numbers and equation number. In summary, you must proofread your final paper in PDF before submission.
-  
-  The maximum number of pages is 5. The 5\textsuperscript{th} page is reserved for references, exclusively. However, the references may begin on an earlier page immediately after the Acknowledgements section, and continue onto the 5\textsuperscript{th} page. If no space is available on an earlier page, then the references may begin on the 5\textsuperscript{th} page.
+  A Sign Language Alphabet (SLA) translator can play an important role by not only its interpretation but also helping deaf people to communicate with each other without learning a new sign language. ...
 
   Index terms should be included as shown below.
 \end{abstract}
 \noindent\textbf{Index Terms}: speech recognition, human-computer interaction, computational paralinguistics
 
 \section{Introduction}
+World Health Organization (WHO) projected that there will be nearly 2.5 billion people in the world having hearing loss by 2050 and emphasized that sign language related applications are essential tools for deaf people \cite{WHO2050}.
 
-This template can be found on the conference website. Templates are provided for Microsoft Word\textregistered, and \LaTeX. However, we highly recommend using \LaTeX when preparing your submission. Information for full paper submission is available on the conference website.
+Instead of oral language using speaking and listening, Sign language is a form of visual communication through gestures, body movements and facial expressions. Sign language can be used for different purposes in different situations, but it is primarily designed for communication with the deaf. As it is more visually accessible to the deaf, sign language is a natural method of communication for the deaf and can express a wide range of meanings in the same way as spoken language; for example, American Sign Language is used by deaf people in the United States and partial provinces of Canada, British Sign Language is used by deaf people in the UK, French Sign Language in France, Japanese Sign Language in Japan and Chinese Sign Language in China.
 
-\section{Page layout and style}
+Although there is no unified international sign language yet, the major sign language systems such as USA, British, France and China have developed fingerspelling, also called "Sign Language Alphabet (SLA)." SLA represents the 26 common alphabets (A to Z) and local special letters using only hand gestures, mostly in difficult words such as personal names, place names and technical terms, etc. Additionally, it can also be used to facilitate easier communication when encountering issues with sign language dialects. 
+
+In the past decade, deep learning has shown excellent performance in image recognition, enabling breakthroughs in sign language recognition technology. Most studies have used neural networks to convert static SLA signs into text or speech, using images of hand gestures as input, and the main approach includes data acquisition technique, static signs, classification with over 90\% accuracy of recognition \cite{wadhawan2021sign}.  Moreover, one of the advanced algorithms for object detection, "You Look Only Once (Yolo)" is developed based on CNN to produce efficient and effective real-time object detection \cite{7780460}. Compared to previous versions of Yolo, the latest update, Yolo V5, is a state-of-the-art object detection model in real-time with great improvements in size, speed and accuracy \cite{glenn_jocher_2021_4679653}. This paper aims to utilize Few-shot Learning and to apply static hand gesture images into CNN with Yolo V5 architecture in order to present a development of a real-time SLA translator, which translates American SLA to other SLA, thereby helping deaf people to communicate with each other without learning a new sign language. 
+  
+\section{Related Work}
+
+\subsection{Sign Language Alphabet Recognition (SLA)}
+
+\subsection{Convonlutional Network (CNN)}
+
+\subsection{You Look Only Once (Yolo)}
+
+\subsection{Few-shot Learning}
+
+\section{Methodology}
 
 Authors should observe the following rules for page layout. A highly recommended way to meet these requirements is to use a given template (Microsoft Word\textregistered\ or \LaTeX) and check details against the corresponding example PDF file. Given templates, Microsoft Word\textregistered\ or \LaTeX, can be adapted/imported easily in other software such as LibreOffice, Apple Pages, Lua\LaTeX, and Xe\LaTeX, but please be careful to match the layout of the provided PDF example.
 
