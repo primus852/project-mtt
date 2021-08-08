@@ -1,1 +1,29 @@
 One of the main benefits of using transfer learning is to make use of previously trained models and save computational cost (CC) for basic tasks like the removal of background. It may also be used when the training data is sparse. For the detection of American SLA we may use (to a degree) any pre-trained model for object detection on our dataset of American SLA signs even if they are limited in count and quality, as they only make the last layer of our final model.
+
+To determine, whether a model may be suitable for our application, we use all of the models and its variants available in Keras\cite{keras}, as shown in Table~\ref{tab:keras_models}. The \textit{Avg. Top-5 Accuracy} in the table refers to the average accuracy of all variants combined.
+\begin{table}[th]
+    \caption{Keras Applications}
+    \label{tab:keras_models}
+    \centering
+    \begin{tabular}{@{}lrcl@{}}
+    \toprule
+    Name         & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}Avg. Top-5\\ Accuracy\end{tabular}} & \multicolumn{1}{l}{Total} & \begin{tabular}[c]{@{}l@{}}Variants\\ (*=Model)\end{tabular}                         \\ \midrule
+    Xception     & 0.945                                                                             & 1                         & *                                                                                    \\
+    VGG          & 0.901                                                                             & 2                         & *16, *19                                                                             \\
+    ResNet       & 0.931                                                                             & 6                         & \begin{tabular}[c]{@{}l@{}}*50, *101, *152,\\  *50V2, *101V2,\\  *152V2\end{tabular} \\
+    Inception    & 0.945                                                                             & 2                         & *V3, *ResNetV2                                                                       \\
+    MobileNet    & 0.898                                                                             & 2                         & *, *V2                                                                               \\
+    DenseNet     & 0.930                                                                             & 3                         & *121, *169, *201                                                                     \\
+    NASNet       & 0.940                                                                             & 2                         & *Mobile, *Large                                                                      \\
+    EfficientNet & -                                                                                 & 8                         & \begin{tabular}[c]{@{}l@{}}*B0, *B1, *B2,\\  *B3, *B4, *B5,\\  *B6, *B7\end{tabular} \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+In order to determine, which of the above stated models we will futher evaluate and possibly optimize, we train each of the Keras models in an experimental setup. The experimental training is defined by:
+\begin{enumerate}
+    \item Training with 5\% of the dataset (~4.300 images, equally distributed to the 29 targets), with a 80/20 Train-Test-Split
+    \item 10 Epochs of Training
+    \item No Early Stopping
+\end{enumerate}
+
+The results will focus on two key indicators: accuracy on our dataset and training time.
