@@ -1,3 +1,20 @@
+The main approach to developing a translation from American SLA to other SLA is to build the best image recognition model that recognizes each English alphabet from the sign language with high accuracy. Instead of learning from scratch, Transfer learning with pre-trained models, which were already trained on a large benchmark image dataset, can save a lot of computation cost and help the performance. Kera applications provide a wide range of pre-trained models for deep learning such as VGG, ResNet, Xception, etc \cite{keras}. All the available pre-trained models will be applied into the first run training with the partial dataset to find out the Top 5 models with the highest accuracy of prediction. The top 5 models are further optimized and trained with all the training data to determine the best ASL recognition model. In the last phase, the results of prediction are mapping with Turkish ASL images.
+
+\begin{figure}[h]
+    \centering
+    \caption{The proposed approach for the sign language translator}
+	\label{fig:the proposed approach}
+    \includegraphics[width=\linewidth]{figures/The approach}
+\end{figure}
+
+
+\subsection{Dataset}
+The American ASL dataset is collected from Kaggle. The dataset contains 87,000 images with 26 Englich alphabets and 3 extra signs, which are delete, space, and nothing. All the images are equally distributed to the 29 signs. In other words, each sign has 4,300 images. The whole dataset is split into training and test dataset. Training dataset is 80\% of the data, and the rest data belongs to the test dataset. 
+
+
+\subsection{Image preprocessing}
+
+\subsection{Transfer learning models}
 One of the main benefits of using transfer learning is to make use of previously trained models and save computational cost (CC) for basic tasks like the removal of background. It may also be used when the training data is sparse. For the detection of American SLA we may use (to a degree) any pre-trained model for object detection on our dataset of American SLA signs even if they are limited in count and quality, as they only make the last layer of our final model.
 
 To determine, whether a model may be suitable for our application, we use all of the models and its variants available in Keras\cite{keras}, as shown in Table~\ref{tab:keras_models}. The \textit{Avg. Top-5 Accuracy} in the table refers to the average accuracy of all variants combined.
@@ -19,7 +36,7 @@ To determine, whether a model may be suitable for our application, we use all of
     \end{tabular}
 \end{table}
 
-In order to determine, which of the above stated models we will futher evaluate and possibly optimize, we train each of the Keras models in an experimental setup. The experimental training is defined by:
+In order to determine, which of the above stated models we will further evaluate and possibly optimize, we train each of the Keras models in an experimental setup. The experimental training is defined by:
 \begin{enumerate}
     \item Training with 5\% of the dataset (~4.300 images, equally distributed to the 29 targets), with a 80/20 Train-Test-Split
     \item 10 Epochs of Training
@@ -27,3 +44,15 @@ In order to determine, which of the above stated models we will futher evaluate 
 \end{enumerate}
 
 The results will focus on two key indicators: accuracy on our dataset and training time.
+
+\subsubsection{VGG16}
+
+\subsubsection{ResNet50V2}
+
+\subsubsection{MobileNet}
+
+\subsubsection{MobileNetV2}
+
+\subsubsection{DenseNet 201}
+
+\subsubsection{Xception}
