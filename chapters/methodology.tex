@@ -45,7 +45,19 @@ In order to determine, which of the above stated models we will further evaluate
 
 The results will focus on two key indicators: accuracy on our dataset and training time.
 
+The following subsections will give a brief introduction of the most relevant model families and how they differ.
+
 \subsubsection{VGG16}
+The VGG models are one of the earlier computer vision models an were introduced in 2015 by Simonyan and Zisserman which showed that using deep architectures with rather small filters can be superior to other models at that time\cite{simonyan2015deep}. VGG represents a classical convolutional neural network which takes an 224x224x3 (width x height x channels) input pictures and passes it to multiple convolutional layers, pooling layers and activation functions to a fully connected final layer for classification. It includes in total 16 layers with weights and is shown in figure \ref{fig:vgg16}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/vgg16.png}
+  \caption{VGG16 architecture}
+  \label{fig:vgg16}
+\end{figure}
+
+The tremendous change compared to previous convolutional neural networks is that the used filters and layers have the same size and parameters such as only ReLu as activation function\cite{simonyan2015deep}. This newly introduced simplicity paired with a relatively deep architecture led to unique results in the ILSVRC-2012 and ILSVRC-2013 competitions compared to the previous state-of-art AlexNet. On top of that is was shown that the model had a strong ability to generalise over multiple datasets and still achieve a top 5 performance. The authors of the network structured it in a way that it is possible to move from 16 layers to 19 layers for even better results.
 
 \subsubsection{ResNet50V2}
 
