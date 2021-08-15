@@ -59,12 +59,101 @@ The VGG models are one of the earlier computer vision models an were introduced 
 
 The tremendous change compared to previous convolutional neural networks is that the used filters and layers have the same size and parameters such as only ReLu as activation function\cite{simonyan2015deep}. This newly introduced simplicity paired with a relatively deep architecture led to unique results in the ILSVRC-2012 and ILSVRC-2013 competitions compared to the previous state-of-art AlexNet. On top of that is was shown that the model had a strong ability to generalise over multiple datasets and still achieve a top 5 performance. The authors of the network structured it in a way that it is possible to move from 16 layers to 19 layers for even better results.
 
-\subsubsection{ResNet50V2}
+\subsubsection{ResNet50V2}\label{resnet}
+Due to the fact that the performance of very deep neural network started to decrease at some point and while backpropagating the vanishing gradient became another problem, He et al. introduced the "residual units" for the new architecture\cite{he2015deep}. The main idea is to not only pass processed information from layer to layer but also to layers further ahead in the network. This skipping of e.g. one layer has been introduced as "skip-connection" or "identity shortcut". The layers and its connections to other layers are arranged as residual blocks which share the same input and output size within the block\cite{he2015deep}. The connection from one block to another is done by a "projection shortcut" which allows a change in input and output dimensions.
 
-\subsubsection{MobileNet}
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/resnet.png}
+  \caption{ResNet architecture}
+  \label{fig:resnet}
+\end{figure}
+
+Figure \ref{fig:resnet} presents the individual residual units on the right side distinguished by the color. The dotted connections represent the projection shortcuts whereas the solid arrows represent the identity shortcuts.
+This newly introduced architecture enabled the authors to solve both of the above mentioned issues and build deep, high performing neural networks. The main reason of this achievement is that higher layers can learn important information from the lower layers directly.
+
+\subsubsection{MobileNet}\label{mobilenet}
+
+MobileNet was developed by Google Inc. with the purpose to be used for mobile and embedded vision applications. This target leads to the fact that the model has been optimised for latency.
+The authors introduced "depthwise separable convolutions" in which the channels are separately convoluted on their on an combined through a 1x1 pointwise convolution\cite{howard2017mobilenets}. A visualisation can be found in figure\ref{fig:mobilenet}. This separation of the convolution for each channel and a followed combination of thee feature map results in significantly less computation than compared to the previous neural networks and therefore minimises the latency drastically by appx. 8 times\cite{howard2017mobilenets}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/mobilenet.png}
+  \caption{MobileNet architecture}
+  \label{fig:mobilenet}
+\end{figure}
+
+Besides the tremendous success with focus and latency such as a high performance on the usual benchmark datasets for e.g. facial recognition, the authors found out that with this approach less regularisation and data augmentation is needed to achieve state-of-art results.
 
 \subsubsection{MobileNetV2}
+The second version of the MobileNet introduces two additions to its predecessor. The first one is called bottleneck layer where a a lowdimensional feature vector is passed to the respective layer which then expands this vector to a highdimensional space, applies a depthwise convolution and reduces the dimensions again to deliver the output\cite{sandler2019mobilenetv2}. This way the number of computations through out the entire network are kept stable which has a positive impact on the latency. As this technique leads to some loss of contained information the authors introduced residual units which follow the same logic like the units explained in section \ref{resnet}. This way information can be passed by skipping a layer and the information loss due to the bottleneck layer is reduced.
+
+\begin{table}[th]
+    \caption{MobileNet comparison}
+    \label{tab:mobilenet_comparision}
+    \centering
+    \begin{tabular}{@{}lrcl@{}}
+    \toprule
+    Version         & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}MACs (millions)\end{tabular}} & \multicolumn{1}{l}{Parameters (millions)}                        \\ \midrule
+    MobileNetV1     & 569                                                                             & 4.24                                                                                 \\
+    MobileNetV2          & 300                                                                             & 3.47\end{tabular}
+\end{table}
+
+\begin{table}[th]
+    \caption{MobileNet FPS comparison}
+    \label{tab:mobilenet_fps_comparision}
+    \centering
+    \begin{tabular}{@{}lrcl@{}}
+    \toprule
+    Version         & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}iPhone 7)\end{tabular}} & \multicolumn{1}{l}{iPhone X)}& \multicolumn{1}{l}{iPad Pro 10.5)}                        \\ \midrule
+    MobileNetV1     & 118                                                                             & 162 & 204                                                                                \\
+    MobileNetV2          & 145                                                                             & 233 & 220\end{tabular}
+\end{table}
+
+Additionally the authors showed an increased performance on benchmark datasets such as a potential combination with single shot detection (SSD) which can yield into even better and faster results.
 
 \subsubsection{DenseNet 201}
 
+Dense convolutional networks, also called DenseNet, were introduced in 2016 by Huang et al. and proposed a new way of building very deep neural networks which are stable to train and high performing. The change compared to other architectures was that each layer is connected to all following layers to pass the resulting feature vector through the entire network\cite{huang2018densely}. A visual illustration can be found in figure \ref{densnet}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/densenet.png}
+  \caption{DensNet architecture}
+  \label{densnet}
+\end{figure}
+
+The connection from one layer to all following layers is in a typical fast-forward manner which leads to the following advantages:
+\begin{itemize}
+  \item alleviate the vanishing-gradient problem
+  \item stronger feature re-use
+  \item smaller number of parameters
+\end{itemize}
+
+The reduced number of parameters is a result of the network being able to ignore redundant feature maps which do not need to be learned again. In the initial paper the authors propose an architecture with very narrow layers (12 filters per layer)\cite{huang2018densely}. Due to the complete connection of all layers the model is less likely to overfit and more stable to train.
+The model contains residual units as well which shall strengthen the information flow from previous to later layers. Additionally bottleneck layers can be found which were introduced to minimise the number of computations being caused by the complex connectivity.
+
 \subsubsection{Xception}
+
+Xception is an advanced version of Google's Inception model and a short form of "Extreme Inception". The previous architecture of Inception convoluted the input channel by channel and combined the results in the end. This depthwise separable convolution was slightly modified in newly introduced Xception model by Chollet\cite{chollet2017xception}. The author changed the regular set up of first applying a depthwise convolution and then the pointwise to a set up which executes these steps the other way round. However this change only did not lead to major improvements with regard to performance which is why a second change was applied by introducing residual connections\cite{chollet2017xception}.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/xception_residuals.png}
+  \caption{Impact of residual units for Xception}
+  \label{xception_residuals}
+\end{figure}
+
+Figure \ref{xception_residuals} shows a clear improvement of the introduction of residual blocks.
+
+Furthermore the author removed the ReLu activation after the depthwise convolution, different than in the Inception architecture, which had a tremendous impact on the model performance.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/xception_activation.png}
+  \caption{Impact of removing ReLu activation}
+  \label{xception_activation}
+\end{figure}
+
+The above mentioned changes not only led to a similar model size like Inception-V3 but also outperform  VGGNet, ResNet, and Inception-v3 in accuracy with regard to known benchmark datasets\cite{chollet2017xception}.
+
+
