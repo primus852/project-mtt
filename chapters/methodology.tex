@@ -51,7 +51,7 @@ The following subsections will give a brief introduction of the most relevant mo
 \subsubsection{VGG16}
 The VGG models are one of the earlier computer vision models an were introduced in 2015 by Simonyan and Zisserman who showed that using deep architectures with rather small filters can be superior to other models at that time\cite{simonyan2015deep}. VGG represents a classical convolutional neural network which takes an 224x224x3 (width x height x channels) input pictures and passes it to multiple convolutional layers, pooling layers and activation functions to a fully connected final layer for classification. It includes in total 16 layers with weights and is shown in figure \ref{fig:vgg16}.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{figures/vgg16.png}
   \caption{VGG16 architecture}
@@ -78,7 +78,7 @@ This newly introduced architecture enabled the authors to solve both of the abov
 MobileNet was developed by Google Inc. with the purpose to be used for mobile and embedded vision applications. This target leads to the fact that the model has been optimised for latency.
 The authors introduced "depthwise separable convolutions" in which the channels are separately convoluted on their on and only then combined through a 1x1 pointwise convolution\cite{howard2017mobilenets}. A visualisation can be found in figure\ref{fig:mobilenet}. This separation of the convolution for each channel and a followed combination of thee feature map results in significantly less computation compared to the previous neural networks and therefore minimises the latency drastically by appx. 8 times\cite{howard2017mobilenets}.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{figures/mobilenet.png}
   \caption{MobileNet architecture}
@@ -118,7 +118,7 @@ Additionally the authors showed an increased performance on benchmark datasets s
 
 Dense convolutional networks, also called DenseNet, were introduced in 2016 by Huang et al. and proposed a new way of building very deep neural networks which are stable to train and high performing. The change compared to other architectures was that each layer is connected to all following layers to pass the resulting feature vector through the entire network\cite{huang2018densely}. A visual illustration can be found in figure \ref{densnet}.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{figures/densenet.png}
   \caption{DensNet architecture}
