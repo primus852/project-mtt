@@ -138,7 +138,7 @@ The model contains residual units as well which shall strengthen the information
 \subsubsection{Xception}
 
 Xception is an advanced version of Google's Inception model and a short form of "Extreme Inception". The previous architecture of Inception convoluted the input channel by channel and combined the results in the end. This depthwise separable convolution was slightly modified in newly introduced Xception model by Chollet\cite{chollet2017xception}. The author changed the regular set up of first applying a depthwise convolution and then the pointwise to a set up which executes these steps the other way round. However this change on its own did not lead to major improvements with regard to performance which is why a second change was applied by introducing residual connections\cite{chollet2017xception}.
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{figures/xception_residuals.png}
   \caption{Impact of residual units for Xception}
