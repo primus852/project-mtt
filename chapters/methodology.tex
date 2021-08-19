@@ -63,7 +63,7 @@ The tremendous change compared to previous convolutional neural networks is that
 \subsubsection{ResNet50V2}\label{resnet}
 Due to the fact that the performance of very deep neural network started to decrease at some point and the vanishing gradient while backpropagating became another problem, He et al. introduced the "residual units" for the new architecture\cite{he2015deep}. The main idea is to not only pass processed information from layer to layer but also to layers further ahead in the network. This skipping of e.g. one layer has been introduced as "skip-connection" or "identity shortcut". The layers and its connections to other layers are arranged as residual blocks which share the same input and output size within the block\cite{he2015deep}. The connection from one block to another is done by a "projection shortcut" which allows a change in input and output dimensions.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{figures/resnet.png}
   \caption{ResNet architecture}
