@@ -1,4 +1,4 @@
-Figure \ref{fig:the proposed approach} shows the proposed approach to the ASL translator. The main approach to developing a translation from American SLA to other SLA is to build the best image recognition model that recognizes each English alphabet from the sign language with high accuracy. Instead of learning from scratch, Transfer learning with pre-trained models, which were already trained on a large benchmark image dataset, can save a lot of computation cost and help the performance. Kera applications provide a wide range of pre-trained models for deep learning such as VGG, ResNet, Xception, etc \cite{keras}. All the available pre-trained models will be applied into the first run training with the partial dataset to find out the Top 5 models with the highest accuracy of prediction. The top 5 models are further optimized and trained with all the training data to determine the best ASL recognition model. In the last phase, the results of prediction are mapping with Turkish ASL images.
+Figure \ref{fig:the proposed approach} shows the proposed architecture to the ASL translator. The main approach to developing a translation from American SLA to other SLA is to build the best image recognition model that recognizes each American letter from the sign language with high accuracy. Instead of learning from scratch, transfer learning with pre-trained models, which were already trained on a large benchmark image dataset, can save a lot of computation cost and help the performance. Keras provides a wide range of pre-trained models for deep learning such as VGG, ResNet, Xception, etc \cite{keras}. All the available pre-trained models will be applied into the first run training with the partial dataset to find out the 5 best performing models with the highest accuracy of prediction. The top 5 models are further optimized and trained with all the training data to determine the best ASL recognition model. In the last phase, the results of prediction will be mapped with Turkish ASL images.
 
 \begin{figure}[h]
     \centering
@@ -9,7 +9,7 @@ Figure \ref{fig:the proposed approach} shows the proposed approach to the ASL tr
 
 
 \subsection{Dataset}
-The American ASL dataset is collected from Kaggle. The dataset contains 87,000 images with 26 Englich alphabets and 3 extra signs, which are delete, space, and nothing. All the images are equally distributed to the 29 signs. In other words, each sign has 4,300 images. The whole dataset is split into training and test dataset. Training dataset is 80\% of the data, and the rest data belongs to the test dataset. 
+The American ASL dataset is collected from Kaggle. The dataset contains 87,000 images with 26 American letters and 3 extra signs, which are delete, space, and nothing. All the images are equally distributed to the 29 signs. In other words, each sign has 4,300 images. The whole dataset is split into training and test dataset. Training dataset is 80\% of the data, and the rest data belongs to the test dataset. 
 
 
 \subsection{Image preprocessing}
@@ -48,7 +48,7 @@ The results will focus on two key indicators: accuracy on our dataset and traini
 The following subsections will give a brief introduction of the most relevant model families and how they differ.
 
 \subsubsection{VGG16}
-The VGG models are one of the earlier computer vision models an were introduced in 2015 by Simonyan and Zisserman which showed that using deep architectures with rather small filters can be superior to other models at that time\cite{simonyan2015deep}. VGG represents a classical convolutional neural network which takes an 224x224x3 (width x height x channels) input pictures and passes it to multiple convolutional layers, pooling layers and activation functions to a fully connected final layer for classification. It includes in total 16 layers with weights and is shown in figure \ref{fig:vgg16}.
+The VGG models are one of the earlier computer vision models an were introduced in 2015 by Simonyan and Zisserman who showed that using deep architectures with rather small filters can be superior to other models at that time\cite{simonyan2015deep}. VGG represents a classical convolutional neural network which takes an 224x224x3 (width x height x channels) input pictures and passes it to multiple convolutional layers, pooling layers and activation functions to a fully connected final layer for classification. It includes in total 16 layers with weights and is shown in figure \ref{fig:vgg16}.
 
 \begin{figure}
   \centering
@@ -60,7 +60,7 @@ The VGG models are one of the earlier computer vision models an were introduced 
 The tremendous change compared to previous convolutional neural networks is that the used filters and layers have the same size and parameters such as only ReLu as activation function\cite{simonyan2015deep}. This newly introduced simplicity paired with a relatively deep architecture led to unique results in the ILSVRC-2012 and ILSVRC-2013 competitions compared to the previous state-of-art AlexNet. On top of that is was shown that the model had a strong ability to generalise over multiple datasets and still achieve a top 5 performance. The authors of the network structured it in a way that it is possible to move from 16 layers to 19 layers for even better results.
 
 \subsubsection{ResNet50V2}\label{resnet}
-Due to the fact that the performance of very deep neural network started to decrease at some point and while backpropagating the vanishing gradient became another problem, He et al. introduced the "residual units" for the new architecture\cite{he2015deep}. The main idea is to not only pass processed information from layer to layer but also to layers further ahead in the network. This skipping of e.g. one layer has been introduced as "skip-connection" or "identity shortcut". The layers and its connections to other layers are arranged as residual blocks which share the same input and output size within the block\cite{he2015deep}. The connection from one block to another is done by a "projection shortcut" which allows a change in input and output dimensions.
+Due to the fact that the performance of very deep neural network started to decrease at some point and the vanishing gradient while backpropagating became another problem, He et al. introduced the "residual units" for the new architecture\cite{he2015deep}. The main idea is to not only pass processed information from layer to layer but also to layers further ahead in the network. This skipping of e.g. one layer has been introduced as "skip-connection" or "identity shortcut". The layers and its connections to other layers are arranged as residual blocks which share the same input and output size within the block\cite{he2015deep}. The connection from one block to another is done by a "projection shortcut" which allows a change in input and output dimensions.
 
 \begin{figure}
   \centering
@@ -69,13 +69,13 @@ Due to the fact that the performance of very deep neural network started to decr
   \label{fig:resnet}
 \end{figure}
 
-Figure \ref{fig:resnet} presents the individual residual units on the right side distinguished by the color. The dotted connections represent the projection shortcuts whereas the solid arrows represent the identity shortcuts.
+Figure \ref{fig:resnet} presents the different residual units on the right side distinguished by the color. The dotted connections represent the projection shortcuts whereas the solid arrows represent the identity shortcuts.
 This newly introduced architecture enabled the authors to solve both of the above mentioned issues and build deep, high performing neural networks. The main reason of this achievement is that higher layers can learn important information from the lower layers directly.
 
 \subsubsection{MobileNet}\label{mobilenet}
 
 MobileNet was developed by Google Inc. with the purpose to be used for mobile and embedded vision applications. This target leads to the fact that the model has been optimised for latency.
-The authors introduced "depthwise separable convolutions" in which the channels are separately convoluted on their on an combined through a 1x1 pointwise convolution\cite{howard2017mobilenets}. A visualisation can be found in figure\ref{fig:mobilenet}. This separation of the convolution for each channel and a followed combination of thee feature map results in significantly less computation than compared to the previous neural networks and therefore minimises the latency drastically by appx. 8 times\cite{howard2017mobilenets}.
+The authors introduced "depthwise separable convolutions" in which the channels are separately convoluted on their on and only then combined through a 1x1 pointwise convolution\cite{howard2017mobilenets}. A visualisation can be found in figure\ref{fig:mobilenet}. This separation of the convolution for each channel and a followed combination of thee feature map results in significantly less computation compared to the previous neural networks and therefore minimises the latency drastically by appx. 8 times\cite{howard2017mobilenets}.
 
 \begin{figure}
   \centering
@@ -87,7 +87,7 @@ The authors introduced "depthwise separable convolutions" in which the channels 
 Besides the tremendous success with focus and latency such as a high performance on the usual benchmark datasets for e.g. facial recognition, the authors found out that with this approach less regularisation and data augmentation is needed to achieve state-of-art results.
 
 \subsubsection{MobileNetV2}
-The second version of the MobileNet introduces two additions to its predecessor. The first one is called bottleneck layer where a a lowdimensional feature vector is passed to the respective layer which then expands this vector to a highdimensional space, applies a depthwise convolution and reduces the dimensions again to deliver the output\cite{sandler2019mobilenetv2}. This way the number of computations through out the entire network are kept stable which has a positive impact on the latency. As this technique leads to some loss of contained information the authors introduced residual units which follow the same logic like the units explained in section \ref{resnet}. This way information can be passed by skipping a layer and the information loss due to the bottleneck layer is reduced.
+The second version of the MobileNet introduces two additions to its predecessor. The first one is called bottleneck layer where a a low-dimensional feature vector is passed to the respective layer which then expands this vector to a high-dimensional space, applies a depthwise convolution and reduces the dimensions again to deliver the output\cite{sandler2019mobilenetv2}. This way the number of computations through out the entire network are kept stable which has a positive impact on the latency. As this technique leads to some loss of contained information the authors introduced residual units which follow the same logic like the units explained in section \ref{resnet}. This way information can be passed by skipping a layer and the information loss due to the bottleneck layer is reduced.
 
 \begin{table}[th]
     \caption{MobileNet comparison}
@@ -106,7 +106,7 @@ The second version of the MobileNet introduces two additions to its predecessor.
     \centering
     \begin{tabular}{@{}lrcl@{}}
     \toprule
-    Version         & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}iPhone 7)\end{tabular}} & \multicolumn{1}{l}{iPhone X)}& \multicolumn{1}{l}{iPad Pro 10.5)}                        \\ \midrule
+    Version         & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}iPhone 7\end{tabular}} & \multicolumn{1}{l}{iPhone X}& \multicolumn{1}{l}{iPad Pro 10.5}                        \\ \midrule
     MobileNetV1     & 118                                                                             & 162 & 204                                                                                \\
     MobileNetV2          & 145                                                                             & 233 & 220\end{tabular}
 \end{table}
@@ -136,7 +136,7 @@ The model contains residual units as well which shall strengthen the information
 
 \subsubsection{Xception}
 
-Xception is an advanced version of Google's Inception model and a short form of "Extreme Inception". The previous architecture of Inception convoluted the input channel by channel and combined the results in the end. This depthwise separable convolution was slightly modified in newly introduced Xception model by Chollet\cite{chollet2017xception}. The author changed the regular set up of first applying a depthwise convolution and then the pointwise to a set up which executes these steps the other way round. However this change only did not lead to major improvements with regard to performance which is why a second change was applied by introducing residual connections\cite{chollet2017xception}.
+Xception is an advanced version of Google's Inception model and a short form of "Extreme Inception". The previous architecture of Inception convoluted the input channel by channel and combined the results in the end. This depthwise separable convolution was slightly modified in newly introduced Xception model by Chollet\cite{chollet2017xception}. The author changed the regular set up of first applying a depthwise convolution and then the pointwise to a set up which executes these steps the other way round. However this change on its own did not lead to major improvements with regard to performance which is why a second change was applied by introducing residual connections\cite{chollet2017xception}.
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{figures/xception_residuals.png}
@@ -154,6 +154,6 @@ Furthermore the author removed the ReLu activation after the depthwise convoluti
   \label{xception_activation}
 \end{figure}
 
-The above mentioned changes not only led to a similar model size like Inception-V3 but also outperform  VGGNet, ResNet, and Inception-v3 in accuracy with regard to known benchmark datasets\cite{chollet2017xception}.
+The changes not only led to a similar model size like Inception-V3 but also outperform  VGGNet, ResNet, and Inception-v3 in accuracy with regard to known benchmark datasets\cite{chollet2017xception}.
 
 
