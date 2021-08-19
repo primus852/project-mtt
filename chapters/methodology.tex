@@ -13,6 +13,7 @@ The American ASL dataset is collected from Kaggle. The dataset contains 87,000 i
 
 
 \subsection{Image preprocessing}
+The original image size in the dataset are 200 x 200 pixels, but the network of pre-trained models are trained on 224 x 224 color images. Therefore, the images in the dataset are then resized to 224 x 224 pixels and are at the same time randomly transformed with data augmentation by applying the Keras ImageDataGenerator class \cite{keras}. ImageDataGenerator class provides an ability to use data augmentation such as rotations, shift, brightness as well as zoom and return augmented images automatically when training a model to help improve a model performance.
 
 \subsection{Transfer learning models}
 One of the main benefits of using transfer learning is to make use of previously trained models and save computational cost (CC) for basic tasks like the removal of background. It may also be used when the training data is sparse. For the detection of American SLA we may use (to a degree) any pre-trained model for object detection on our dataset of American SLA signs even if they are limited in count and quality, as they only make the last layer of our final model.
