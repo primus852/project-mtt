@@ -159,4 +159,23 @@ Furthermore the author removed the ReLu activation after the depthwise convoluti
 
 The changes not only led to a similar model size like Inception-V3 but also outperform  VGGNet, ResNet, and Inception-v3 in accuracy with regard to known benchmark datasets\cite{chollet2017xception}.
 
+\subsection{Evaluation metric}
+
+The following evaluation will use the model accuracy as final metric to define  each models performance. The accuracy will be calculated for each target variable and then averaged over all classes. The calculation can be described as:
+
+\begin{equation}
+ACC=\frac{1}{N} \sum_\textit{i=1}^{N_\textit{c}} \displaystyle\frac{TP_{\textit{i}}+TN_{\textit{i}}}{TP_{\textit{i}}+TN_{\textit{i}}+FP_{\textit{i}}+FN_{\textit{i}}}
+\end{equation}
+
+\intertext{N_\textit{c}=\textit{Number of classes}}\break
+\intertext{TP_\textit{i} = \textit{Count of true positive predictions for given class},
+}\break
+\intertext{TN_\textit{i} = \textit{Count of true negative predictions for given class} },\break
+\intertext{FP_\textit{i} = \textit{Count of false positive predictions for given class},
+}\break
+\intertext{FN_\textit{i} = \textit{Count of false negative predictions for given class}
+}\break
+
+
+
 
