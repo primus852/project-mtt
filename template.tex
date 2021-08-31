@@ -11,45 +11,30 @@
 \maketitle
 %
 \begin{abstract}
-  Every country has its own sign language. There is no universal sign language in the world to help deaf people communicate with others from other countries. This project focuses on developing a Sign Language Alphabet (SLA) translator that can play an important role by not only its interpretation but also helping deaf people to communicate with each other without learning a new sign language. In this project, the sign language used for training detective models is American sign language, and the detective models were imported from pre-trained models for transfer learning in the Keras library. The best six models, VGG16, ResNet50V2, MobileNet, MobileNetV2, DenseNet201, and Xception were selected by comparing the performance of the partial learning to further use these models for training of the entire training dataset. After the training of the full training dataset, the six models were compared for accuracy and inference time and the result was MobileNet with an inference time as fast as 0.03 seconds and an accuracy of 99.68\%. The test dataset was further detected using this MobileNet model and the detected results were mapped to Turkish sign language images for translation.
-
-  Index terms should be included as shown below.
+  \input{chapters/abstract.tex}  
 \end{abstract}
 \noindent\textbf{Index Terms}: sign language alphabet recognition, transfer learnings, object detection
 
 \section{Introduction}
-The World Health Organization (WHO) projected that nearly 2.5 billion people in the world have hearing loss by 2050 and emphasized that sign language-related applications are essential tools for deaf people \cite{WHO2050}.
-
-Instead of oral language using speaking and listening, Sign language is a form of visual communication through gestures, body movements and facial expressions. Sign language can be used for different purposes in different situations, but it is primarily designed for communication with the deaf. As it is more visually accessible to the deaf, sign language is a natural method of communication for the deaf people and can express a wide range of meanings in the same way as spoken language; for example, American Sign Language is used by deaf people in the United States and partial provinces of Canada, British Sign Language is used by deaf people in the UK, French Sign Language in France, Japanese Sign Language in Japan and Chinese Sign Language in China.
-
-Although there is no unified international sign language yet, the major sign language systems such as the USA, British, France and China have developed fingerspelling, also called "Sign Language Alphabet" (SLA). SLA represents the 26 common alphabets, A to Z, and local special letters using only hand gestures, mostly in difficult words such as personal names, place names and technical terms, etc. Additionally, it can also be used to facilitate easier communication when encountering issues with sign language dialects. 
-
-In the past decade, deep learning has shown excellent performance in image recognition, enabling breakthroughs in sign language recognition technology. Many studies have used neural networks to convert static SLA signs into text or speech, using images of hand gestures as input, and the main approach includes data acquisition technique, static signs, classification with over 90\% accuracy of recognition \cite{wadhawan2021sign}. Moreover, Transfer Learning is one of the major milestones in deep Learning for Object Detection. With transfer learning, pre-trained models have already been trained on a different task, therefore it is a short-cut that re-uses the pre-trained model such as its trained weights for a shorter training process. This project aims to utilize pre-trained models from transfer learning with Object Detection in Keras and to apply static hand gesture images into different pre-trained model architecture to present a development of an SLA translator, which translates American SLA to Turkish SLA, thereby helping deaf people to communicate with each other without learning a new sign language. The remainder of this paper will include related work in the Sign language recognition research area, the problem statement found in the research, the objective of the project, and the methodology applied in the project. Afterwards, six pre-trained models, VGG16, ResNet50V2, MobileNet, MobileNetV2, DenseNet201, and Xception from transfer learning with Object Detection in Keras are selected and trained as predictive models. The results of relevant inference time and accuracy are evaluated as final metrics to determine the best model for the use case. In end, the best model will be used to detect letters from the ASL images using the test dataset and map those to the Turkish SLA images.
+\input{chapters/intro.tex}
   
 \section{Related Work}
-In the last decade, the development of gesture recognition technology has led to a breakthrough in SLA translators. There are two main approaches of sign language recognition: sensor-based or vision-based \cite{Cheok2019ARO}. The major difference between sensor-based and vision-based approaches is on the data acquisition phase. Sensor-based approaches utilize sensor instruments such as sensory glove to capture sign language, but such equipment was too complex and expensive to be widely actual used. On the other hand, vision-based approaches don't require complex facilities to acquire data, acquiring images or videos of the sign language through camera. For example, D., Cao et al.\cite{7301347} in 2015 developed sign language recognition by adapting Microsoft Kinect technology and used Random forest to successfully recognized static 24 American SLA with above 90\% accuracy. Furthermore, A., Joshi et al.\cite{8088212} presented a real-time automated American SLA translator that translates American SLA to English text by applying edge detection and cross-correlation methodologies, resulting in 94.23\% accuracy for alphabets. In recent years, Convolutional neural network (CNN) has become a common method applied in image recognition and classification. M., Taskiran et al.\cite{8441304} designed a real-time sign language system with an implementation of feature extraction and classifier based on a CNN structure, resulted in 98.05\% accuracy.
+\input{chapters/related.tex}
 
 \section {Research question}
-\subsection{Problem Statement}
-The previous works showed great achievements in translating American SLA to texts by capturing images through cameras and using CNN for feature extraction and classification. However, an SLA translator from American SLA to other SLA is still not available today which would solve the international communication of people. The challenge lies in identifying a detector which is delivers a high accuracy and fast predictions at the same time.
-
-\subsection{Objective}
-The goal for this research question aims to develop an SLA translator that uses optimal transfer learning for Object Detection to recognise images of American SLAs and translate them into Turkish SLAs with images. For example, the American alphabet P in sign language is recognised and translated into the Turkish alphabet P in sign language. The main focus will be to find a model that balances accuracy such as inference time.
+\input{chapters/research_question.tex}
 
 \section{Methodology}
-
 \input{chapters/methodology.tex}
 
 \section{Results}\label{chapter_results}
 \input{chapters/results.tex}
 
 \section{Discussion}
+\input{chapters/discussion.tex}
 
 \section{Conclusions}
-
-This scientific work proposed an applied review of multiple state-of-art deep learning models to elaborate their usability for sign language translation. The specified problem of not having intense research in the field of translating letters from one sign language to another was the main motivation. The goal was to compare multiple models with regard to accuracy such as latency to make an educated guess of which of the proposed models is the most suited one for a user facing application. To validate which model to choose, a 87.000 image big dataset with American sign language letters was used as training data. Starting with a long list of 27 pre-trained models from the Keras framework a short list of only the 6 best performing models was chosen to proceed with. The models were trained by applying transfer learning to maintain the previously learned weights. All models were compared based on their accuracy and prediction time such as the number of frames per second which they can process. It was shown that the accuracy of all models was quite similar which led to the fact that no model could have been proposed solely based on this indicator. However due to the different model architectures the research showed significant difference in the prediction time such as number per frames which were processed. MobileNetV1 resulted as preferred model from this comparison as the model accuracy such as its prediction speed were superior compared to the other architectures.
-Nevertheless the current workflow is only applicable for languages which share the same letters as the predicted output is only mapped to the other language's letter. Further work has to include a more sophisticated word and letter embedding for the actual translation after a correct prediction.
-Also the actual performance of an implemented infrastructure has to be tested as all experiments were executed in-vitro.
+\input{chapters/conclusion.tex}
 
 
 \bibliographystyle{IEEEtran}
