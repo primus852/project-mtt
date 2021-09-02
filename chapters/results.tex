@@ -21,28 +21,23 @@ While models as \textit{DenseNet} seem to have good results with all variants, o
     \includegraphics[width=\linewidth]{figures/long_training_time.png}
 \end{figure}
 
-Fig. \ref{fig:long_list_time} shows the time that was needed to train the models with the reduced dataset for 10 epochs without early stopping. To determine, whether a model should be used for the full training, we calculated the ratio of accuracy and training time and normalized the results between 0 and 1 with the formula
+Fig. \ref{fig:long_list_time} shows the time that was needed to train the models with the reduced dataset for 10 epochs without early stopping. While it shows a wide range, the times generally speaking not too long at all. Therefore, the training time will not be the main factor for deciding which model we should move forward with.
 
-\begin{equation}
-    z_i=\frac{x_i - min(x)}{max(x) - min(x)}
-\end{equation}
-having \begin{math} x_n = accuracy_n / time_n \end{math} and \begin{math}x \in \mathbb{N} = \{0,...\}\end{math}. Shown in Table \ref{tab:result:long} are the top 10 normalized ratios for the trained models of the long list. 
+When deploying the model in a real-time environment, such as a live detection via a webcam another factor comes into play: the inference time. As described in chapter \ref{chapter_models}, the models differ fundamentally in their architecture. At this point, it is uncertain how the architecural structure will affect the inference time of a fully trained model. Therefore we decided to move forward with the best performing model from each architecture described in chapters \ref{chapter_vgg16} to \ref{chapter_xception}. In addition to the top 5 models, we decided to add \textit{MobileNetV2} as well, as it seemed interesting why the newer version of the model did perform worse than the old one. Table \ref{tab:results:long} contains all models that will be used for a full training.
 
 \begin{table}[th]
-    \caption{Top 10 Long List Results}
-    \label{tab:result:long}
+    \caption{Short List candidates}
+    \label{tab:results:long}
     \centering
-    \begin{tabular}{@{}llll@{}}
-    \toprule
-    Model & \begin{math}accuracy\end{math} & \begin{math}time\end{math} & \begin{math}z\end{math} \\ \midrule
-    1    & 0.99 & 121s                                                      & 0.69                                                  \\
-    3    & 0.98 & 165s                                                      & 0.51                                                  \\
-         &      &                                                          &                                                       \\
-         &      &                                                          &                                                       \\
-         &      &                                                          &                                                       \\
-         &      &                                                          &                                                       \\
-         &      &                                                          &                                                       \\
-         &      &                                                          &                                                       \\ \bottomrule
+    \begin{tabular}{lll}
+    \hline
+    Name        & Acc.   & \begin{tabular}[c]{@{}l@{}}Time\\ (seconds)\end{tabular} \\ \hline
+    MobileNet   & 0.9957 & 82                                                       \\
+    MobileNetV2 & 0.9756 & 165                                                      \\
+    DenseNet201 & 0.9842 & 328                                                      \\
+    ResNet50V2  & 0.9239 & 178                                                      \\
+    Xception    & 0.9698 & 238                                                      \\
+    VGG16       & 0.9382 & 286                                                      \\ \hline
     \end{tabular}
 \end{table}
 

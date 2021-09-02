@@ -50,7 +50,7 @@ The results will focus on two key indicators: accuracy on our dataset and traini
 
 The following subsections will give a brief introduction of the most relevant model families and how they differ.
 
-\subsubsection{VGG16}
+\subsubsection{VGG16}\label{chapter_vgg16}
 The VGG models are one of the earlier computer vision models an were introduced in 2015 by Simonyan and Zisserman who showed that using deep architectures with rather small filters can be superior to other models at that time\cite{simonyan2015deep}. VGG represents a classical convolutional neural network which takes an 224x224x3 (width x height x channels) input pictures and passes it to multiple convolutional layers, pooling layers and activation functions to a fully connected final layer for classification. It includes in total 16 layers with weights and is shown in figure \ref{fig:vgg16}.
 
 \begin{figure}[ht]
@@ -137,7 +137,7 @@ The connection from one layer to all following layers is in a typical fast-forwa
 The reduced number of parameters is a result of the network being able to ignore redundant feature maps which do not need to be learned again. In the initial paper the authors propose an architecture with very narrow layers (12 filters per layer)\cite{huang2018densely}. Due to the complete connection of all layers the model is less likely to overfit and more stable to train.
 The model contains residual units as well which shall strengthen the information flow from previous to later layers. Additionally bottleneck layers can be found which were introduced to minimise the number of computations being caused by the complex connectivity.
 
-\subsubsection{Xception}
+\subsubsection{Xception}\label{chapter_xception}
 
 Xception is an advanced version of Google's Inception model and a short form of "Extreme Inception". The previous architecture of Inception convoluted the input channel by channel and combined the results in the end. This depthwise separable convolution was slightly modified in newly introduced Xception model by Chollet\cite{chollet2017xception}. The author changed the regular set up of first applying a depthwise convolution and then the pointwise to a set up which executes these steps the other way round. However this change on its own did not lead to major improvements with regard to performance which is why a second change was applied by introducing residual connections\cite{chollet2017xception}.
 \begin{figure}[ht]
