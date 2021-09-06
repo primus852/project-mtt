@@ -75,5 +75,14 @@ The inference time was measured with the above saved models. All models executed
 
 The results visualized in Fig. \ref{fig:result:inference} show that only \textit{MobileNet} and \textit{MobileNetV2} have near real-time capabilities. While a prediction time of 0.14 seconds (\textit{DenseNet201}, Fig. \ref{fig:result:inference}) does seem acceptable to the human eye, it translates to approx. 7 predictions per second. Given, that the human eye can detect meaning in images within 13ms\cite{Potter2014} (approx. 75 frames per second (fps)) and videos have a minimum framerate of 23.97 fps to appear smooth and fluent, 7 predictions (frames) per second will not lead to an acceptable user experience. Therefore only the \textit{MobileNet} and \textit{MobileNetV2} should be considered for real-time applications, as the inference time of 0.03 seconds leads to a framerate of approx. 33 fps.
 
-\subsection{Translation Process}
-<KEINE STATS, VERWEIS AUF BILD + IMPLEMENTIERUNG>
+\subsection{Shipping production-ready Model}
+The final implementation of the trained model is up to the user. Each trained model is saved as a portable \textit{Tensorflow} file and can be used to implement a real-time detection via \textit{OpenCV} for example. In order to confirm the usability of the model, we implemented an application, which takes static images as an input and outputs the according image of a predefined SLA dataset of another language. 
+
+The target SLA for the sample implementation was the Turkish Sign Language (TSL) and the \textit{MobileNetV2} model was used. As any real-time application would have, the dimensions and resolution of the input data differed from the images used in training. Fig. \ref{fig:result:translation} shows a sample output for the translation of the left sign (ASL Letter D), the predicted sign and the according output image for the TSL.
+
+\begin{figure}[h]
+    \centering
+    \caption{Sample Translation from ASL to TSL, Letter D}
+	\label{fig:result:translation}
+    \includegraphics[width=\linewidth]{figures/sample_translate_D_tur.png}
+\end{figure}

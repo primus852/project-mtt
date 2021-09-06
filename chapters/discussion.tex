@@ -1,0 +1,13 @@
+The training of the long and the short list in chapter \ref{chapter_results} diminshed the importance of the training time, but therefore the key factor for chosing the best model for the application became the inference time. \textit{MobileNetV2} has the best inference time of 0.03 seconds per prediction, allowing a framrate of approx. 33 fps. While this can result in a smooth video in real-time appilcations, many of the current webcams allow a higher framerate of up to 60 fps. In order for the model not to slow down the actual output, the next steps should focus on the improvement of the inference time.
+
+We identified three major leverage factors for improving the inference time: reducing the input layers, adjust the training settings in \textit{Keras} and implement a distributed prediction with \textit{DKeras}.
+
+\subsection{Reducing the input layers}\label{chapter_distill}
+Improving the inference time of our model can be achieved by a process called \textit{Knowledge Distillation}\cite{hinton2015distilling}. Models typically use a \textit{softmax} output layer to convert the logarithmic value of the model to a probability by comparing it to the other logarithmic values. Geoffrey Hinton et al\cite{hinton2015distilling} propose a method derive a distilled model from the original one by averaging two weighted functions. The first function is using the cross entropy with the soft targets, the second function is the cross entropy with the correct labels. Tests with various datasets showed that the speed of the distilled models increased while the accuracy decreased by 1 to 5\%, depending on the dataset and architecture.
+
+The accuracy of \textit{MobilNetV2} is at 99\% (see Table \ref{tab:results:short}), even with a decreased accuracy of approx. 94\% with a distilled model, assuming an unchanged inference time of 0.03s this leads to a wrong label every other 2.82 seconds for one frame, down from 2.97s with a 99\% accuracy. So even if the inference time does not increase by a significant margin, any improvement can lead to a better user-experience and therefore should be tested.
+
+\subsection{Optimize the training}
+
+\subsection{Implement DKeras}
+https://blog.xmartlabs.com/2020/06/01/how-to-speed-up-inference-in-your-deep-learning-model/
