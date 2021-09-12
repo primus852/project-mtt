@@ -78,7 +78,9 @@ The results visualized in Fig. \ref{fig:result:inference} show that only \textit
 \subsection{Shipping production-ready Model}
 The final implementation of the trained model is up to the user. Each trained model is saved as a portable \textit{Tensorflow} file and can be used to implement a real-time detection via \textit{OpenCV}, for example. In order to confirm the usability of the model, we implemented an application, which takes static images as an input and outputs them according to the image of a predefined SLA dataset of another language. 
 
-The target SLA for the sample implementation was the Turkish Sign Language (TSL), and the \textit{MobileNet} model was used. As any real-time application would have, the dimensions and resolution of the input data differed from the images used in training. Fig. \ref{fig:result:translation} shows a sample output for the translation of the left sign (ASL Letter D), the predicted sign and the according to output image for the TSL.
+The target SLA for the sample implementation was the Turkish Sign Language (TSL). Against our expectations, the \textit{MobileNetV2} did significantly worse than \textit{MobileNet}. Tables \ref{tab:mobilenet_comparision} and \ref{tab:mobilenet_fps_comparision} suggested a faster inference time, but our research showed, that \textit{MobileNetV2} was 33\% slower than \textit{MobileNet}. Therefore the \textit{MobileNet} should be used for a production environment and is used in our sample implementation.
+
+As any real-time application would have, the dimensions and resolution of the input data differed from the images used in training. Fig. \ref{fig:result:translation} shows a sample output for the translation of the left sign (ASL Letter D), the predicted sign and the according to output image for the TSL.
 
 \begin{figure}[h]
     \centering
