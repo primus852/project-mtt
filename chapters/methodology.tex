@@ -114,6 +114,8 @@ The second version of the MobileNet introduces two additions to its predecessor.
     MobileNetV2          & 145                                                                             & 233 & 220\end{tabular}
 \end{table}
 
+As it can be seen in the previous tables the second version of MobileNet uses overall less computations due to a significantly reduced count of parameters. The authors measured the resulting performance on three different devices which clearly showed that the smaller count of computations leads to fast predictions and therefore more processed frames per second.
+
 Additionally, the authors showed increased performance on benchmark datasets such as a potential combination with single shot detection (SSD), which can yield into even better and faster results.
 
 \subsubsection{DenseNet 201}
@@ -149,7 +151,7 @@ Xception is an advanced version of Google's Inception model and a short form of 
 
 Figure \ref{xception_residuals} shows a clear improvement of the introduction of residual blocks.
 
-Furthermore, the author removed the ReLu activation after the depthwise convolution, different than in the Inception architecture, which had a tremendous impact on the model performance.
+Furthermore, the author removed the ReLu activation after the depthwise convolution, in contrast to the Inception architecture, which had a tremendous impact on the model performance.
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{figures/xception_activation.png}
@@ -161,7 +163,7 @@ The changes not only led to a similar model size like Inception-V3 but also outp
 
 \subsection{Evaluation metric}
 
-The following evaluation will use the model accuracy as a final metric to define  each model's performance. The accuracy will be calculated for each target variable and then averaged over all classes. The calculation can be described as:
+The following evaluation will use the model accuracy as a first metric to define each model's performance. Using this metric will lead to the short list which is then used to further evaluation. The accuracy will be calculated for each target variable and then averaged over all classes. The calculation can be described as:
 \begin{equation}
 ACC=\frac{1}{N} \sum_\textit{i=1}^{N_\textit{c}} \displaystyle\frac{TP_{\textit{i}}+TN_{\textit{i}}}{TP_{\textit{i}}+TN_{\textit{i}}+FP_{\textit{i}}+FN_{\textit{i}}}
 \end{equation}
@@ -171,6 +173,8 @@ $TP_\textit{i} = \textit{Count of true positive predictions for given class}$\\
 $TN_\textit{i} = \textit{Count of true negative predictions for given class}$\\
 $FP_\textit{i} = \textit{Count of false positive predictions for given class}$\\
 $FN_\textit{i} = \textit{Count of false negative predictions for given class}$
+
+As second metric to further analyse the models' performance the inference time (in seconds) has been chosen as this was considered a relevant factor for a potential real-time application.
 
 
 
